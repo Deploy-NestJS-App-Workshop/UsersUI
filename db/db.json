@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "test1",
+      "age": 0,
+      "active": true,
+      "id": 0
+    },
+    {
+      "name": "qwdqw",
+      "age": "wedwe",
+      "active": true,
+      "id": 1
+    }
+  ]
+}

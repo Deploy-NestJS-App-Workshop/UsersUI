@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import UserManagement from './components/UserManagement/UserManagement';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import LanguageContext from './components/Providers/LanguageContext'
+import { useState } from 'react';
+import UserDetail from './components/UserManagement/UserDetail';
 
 function App() {
+  const [language, setLanguage] = useState('en');
+
+  function toggleLanguage() {
+    setLanguage(language === 'en' ? 'ua' : 'en');
+  }
+
+  const languageValue = {
+    language,
+    toggleLanguage
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <LanguageContext.Provider value={languageValue}>
+        <Routes>
+          <Route index element={<UserManagement />} />
+          <Route path="users">
+            <Route path=":id" element={<UserDetail />} />
+          </Route>
+        </Routes>
+      </LanguageContext.Provider>
+    </BrowserRouter>
   );
 }
 
