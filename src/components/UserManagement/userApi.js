@@ -1,4 +1,4 @@
-const USER_URL = 'http://localhost:3000/user-management';
+const USER_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
 
 export async function createUser(user) {
   const res = await fetch(USER_URL, {
